@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Detail Penilaian Kaiwa | Suka2Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="back" id="back" href="frame-5-lulus.html" aria-label="Kembali ke hasil Tes Kaiwa">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <!-- TODO: ganti dengan file logo asli Suka2Jepang -->
+      <a class="wordmark" href="https://dev.suka2jepang.com/dashboard">Suka2Jepang</a>
+    </header>
+
+    <main class="content">
+      <!-- Kondisi halaman. Prototipe: ?state=loading | pending | error, dan ?status=pass | fail untuk hasilnya. -->
+      <section class="state" data-state="loading" aria-busy="true" hidden>
+        <p role="status">Memuat detail penilaian...</p>
+      </section>
+
+      <section class="state" data-state="pending" hidden>
+        <span class="kicker"><span lang="ja"><ruby>評価<rt>ひょうか</rt></ruby></span> (Penilaian)</span>
+        <h1 class="title">Penilaian belum selesai</h1>
+        <p>Jawabanmu masih dinilai. Buka halaman ini lagi nanti untuk melihat detailnya.</p>
+        <a class="btn secondary" href="https://dev.suka2jepang.com/dashboard">Kembali ke dashboard</a>
+      </section>
+
+      <section class="state" data-state="error" hidden>
+        <span class="kicker"><span lang="ja"><ruby>評価<rt>ひょうか</rt></ruby></span> (Penilaian)</span>
+        <h1 class="title">Detail penilaian gagal dimuat</h1>
+        <p>Periksa koneksi internet, lalu muat ulang halaman ini.</p>
+        <button class="btn" type="button" id="reload">Muat ulang</button>
+      </section>
+
+      <div class="stack" data-state="result" hidden>
+        <!-- TODO: hapus catatan ini begitu halaman memakai hasil Tes Kaiwa asli. -->
+        <p class="demo-note"><strong>Contoh data.</strong> Angka, level, dan saran di halaman ini hanya contoh untuk prototipe.</p>
+
+        <div>
+          <span class="kicker"><span lang="ja"><ruby>評価<rt>ひょうか</rt></ruby></span> (Penilaian)</span>
+          <h1 class="title">Detail penilaian Kaiwa</h1>
+        </div>
+
+        <section class="final-card" aria-labelledby="final-label">
+          <span class="status-mark" id="final-mark" aria-hidden="true"></span>
+          <div>
+            <p class="label" id="final-label">Hasil akhir</p>
+            <div class="value">
+              <strong id="final-status"></strong>
+              <span class="level" id="final-level"></span>
+            </div>
+            <p class="note" id="final-note"></p>
+          </div>
+        </section>
+
+        <section aria-labelledby="scores-title">
+          <h2 class="section-title" id="scores-title">Nilai per kategori</h2>
+          <p class="hint" id="scores-hint"></p>
+          <ol class="score-list" id="score-list"></ol>
+        </section>
+
+        <section class="info-box" aria-labelledby="advice-title">
+          <h2 class="section-title" id="advice-title">Saran</h2>
+          <p id="advice"></p>
+        </section>
+
+        <div class="actions-col" id="actions"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/frame-6.js?v=1"></script>
+</body>
+</html>

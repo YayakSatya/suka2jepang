@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hasil Tes Kaiwa | Suka2Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="back" href="https://dev.suka2jepang.com/dashboard" aria-label="Kembali ke dashboard">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <!-- TODO: ganti dengan file logo asli Suka2Jepang -->
+      <a class="wordmark" href="https://dev.suka2jepang.com/dashboard">Suka2Jepang</a>
+    </header>
+
+    <main class="content">
+      <!-- Kondisi halaman. Prototipe: pilih lewat ?state=loading | pending | error, tanpa parameter = hasil. -->
+      <section class="state" data-state="loading" aria-busy="true" hidden>
+        <p role="status">Memuat hasil Tes Kaiwa...</p>
+      </section>
+
+      <section class="state" data-state="pending" hidden>
+        <span class="kicker"><span lang="ja"><ruby>結果<rt>けっか</rt></ruby></span> (Hasil Tes Kaiwa)</span>
+        <h1 class="title">Hasil belum tersedia</h1>
+        <p>Jawabanmu masih dinilai. Buka halaman ini lagi nanti untuk melihat hasilnya.</p>
+        <a class="btn secondary" href="https://dev.suka2jepang.com/dashboard">Kembali ke dashboard</a>
+      </section>
+
+      <section class="state" data-state="error" hidden>
+        <span class="kicker"><span lang="ja"><ruby>結果<rt>けっか</rt></ruby></span> (Hasil Tes Kaiwa)</span>
+        <h1 class="title">Hasil gagal dimuat</h1>
+        <p>Periksa koneksi internet, lalu muat ulang halaman ini.</p>
+        <button class="btn" type="button" id="reload">Muat ulang</button>
+      </section>
+
+      <div class="stack" data-state="result" hidden>
+        <section class="result-hero" aria-labelledby="result-title">
+          <!-- TODO: ganti ikon ini dengan ilustrasi dari pemilik produk. -->
+          <span class="status-mark fail" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </span>
+          <span class="kicker"><span lang="ja"><ruby>結果<rt>けっか</rt></ruby></span> (Hasil Tes Kaiwa)</span>
+          <h1 class="title" id="result-title">Tidak lulus</h1>
+          <p class="result-lead">Terima kasih sudah mengikuti Tes Kaiwa. Hasil penilaianmu kali ini belum memenuhi batas lulus.</p>
+        </section>
+
+        <section class="info-box" aria-labelledby="next-title">
+          <h2 class="section-title" id="next-title">Langkah berikutnya</h2>
+          <p>Kamu bisa mengulang Tes Kaiwa. Lihat detail penilaian dulu supaya tahu bagian mana yang perlu dilatih.</p>
+        </section>
+
+        <div class="actions-col">
+          <!-- TODO: ganti dengan URL Tes Kaiwa yang sudah ada setelah dikonfirmasi tim (sementara ke AI Interview Training). -->
+          <a class="btn" href="https://dev.suka2jepang.com/dashboard/ai-interview-training">Ulangi Tes Kaiwa</a>
+          <a class="btn secondary" href="frame-6-detail-penilaian.html?status=fail">Lihat detail penilaian</a>
+          <a class="text-btn" href="https://dev.suka2jepang.com/dashboard">Kembali ke dashboard</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var state = new URLSearchParams(location.search).get('state');
+      if (['loading', 'pending', 'error'].indexOf(state) === -1) state = 'result';
+      document.querySelector('[data-state="' + state + '"]').hidden = false;
+      document.getElementById('reload').addEventListener('click', function () { location.reload(); });
+    })();
+  </script>
+</body>
+</html>

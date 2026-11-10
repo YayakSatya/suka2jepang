@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Prototipe Pendaftaran Tes Kaiwa | Suka2Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+  <style>
+    .frame-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .frame-list a {
+      display: grid;
+      gap: 2px;
+      padding: 14px 16px;
+      border: 1px solid var(--control-border);
+      border-radius: var(--radius-md);
+      color: var(--text);
+      text-decoration: none;
+    }
+    .frame-list a:hover { border-color: var(--primary); }
+    .frame-list strong { font-size: 16px; }
+    .frame-list span { font-size: 14px; color: var(--text-2); }
+    .variants { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0 4px; }
+    .variants a { padding: 0 8px; border: 0; min-height: 44px; display: inline-flex; align-items: center; color: var(--primary); font-size: 14px; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <span class="wordmark">Suka2Jepang</span>
+    </header>
+
+    <main class="content">
+      <div>
+        <h1 class="title">Prototipe pendaftaran Tes Kaiwa</h1>
+        <p class="subtitle">Enam frame untuk review desain. Mulai dari Frame 1 untuk mencoba alur pendaftaran lengkap.</p>
+      </div>
+
+      <ol class="frame-list">
+        <li><a href="frame-1-asal-pendaftaran.html"><strong>Frame 1: Asal pendaftaran</strong><span>Pilih jalur Mandiri atau Dari LPK/LKP.</span></a></li>
+        <li><a href="frame-2-data-kandidat.html"><strong>Frame 2: Data kandidat</strong><span>Isi data diri, atau beberapa kandidat untuk LPK.</span></a></li>
+        <li><a href="frame-3-konfirmasi.html"><strong>Frame 3: Konfirmasi</strong><span>Periksa, ubah, lalu kirim pendaftaran.</span></a></li>
+        <li>
+          <a href="frame-4-tidak-lulus.html"><strong>Frame 4: Tidak lulus</strong><span>Hasil Tes Kaiwa yang belum lulus.</span></a>
+          <ul class="variants" aria-label="Kondisi lain Frame 4">
+            <li><a href="frame-4-tidak-lulus.html?state=loading">Loading</a></li>
+            <li><a href="frame-4-tidak-lulus.html?state=pending">Belum dinilai</a></li>
+            <li><a href="frame-4-tidak-lulus.html?state=error">Gagal dimuat</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="frame-5-lulus.html"><strong>Frame 5: Lulus</strong><span>Hasil Tes Kaiwa yang lulus.</span></a>
+          <ul class="variants" aria-label="Kondisi lain Frame 5">
+            <li><a href="frame-5-lulus.html?state=loading">Loading</a></li>
+            <li><a href="frame-5-lulus.html?state=pending">Belum dinilai</a></li>
+            <li><a href="frame-5-lulus.html?state=error">Gagal dimuat</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="frame-6-detail-penilaian.html?status=pass"><strong>Frame 6: Detail penilaian</strong><span>Nilai per kategori dan saran (contoh data).</span></a>
+          <ul class="variants" aria-label="Kondisi lain Frame 6">
+            <li><a href="frame-6-detail-penilaian.html?status=fail">Versi tidak lulus</a></li>
+            <li><a href="frame-6-detail-penilaian.html?state=loading">Loading</a></li>
+            <li><a href="frame-6-detail-penilaian.html?state=error">Gagal dimuat</a></li>
+          </ul>
+        </li>
+      </ol>
+    </main>
+  </div>
+</body>
+</html>

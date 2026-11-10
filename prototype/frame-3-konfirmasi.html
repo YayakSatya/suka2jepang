@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Konfirmasi Pendaftaran | Suka2Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="back" href="frame-2-data-kandidat.html" aria-label="Kembali ke data kandidat">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <!-- TODO: ganti dengan file logo asli Suka2Jepang -->
+      <a class="wordmark" href="https://dev.suka2jepang.com/login">Suka2Jepang</a>
+    </header>
+
+    <div class="content" id="review">
+      <ol class="stepper" aria-label="Langkah pendaftaran">
+        <li class="done"><a href="frame-1-asal-pendaftaran.html"><span class="dot">1</span>Jalur</a></li>
+        <li class="done"><a href="frame-2-data-kandidat.html"><span class="dot">2</span>Data</a></li>
+        <li aria-current="step"><span class="dot">3</span>Konfirmasi</li>
+      </ol>
+
+      <div>
+        <span class="kicker"><span lang="ja"><ruby>確認<rt>かくにん</rt></ruby></span> (Konfirmasi)</span>
+        <h1 class="title" id="page-title">Periksa lagi datanya</h1>
+        <p class="subtitle">Data belum dikirim. Kalau ada yang salah, ubah dulu sebelum lanjut.</p>
+      </div>
+
+      <!-- Halaman dibuka tanpa data dari Frame 1 dan 2 -->
+      <section class="empty-state" id="no-data" hidden>
+        <p>Belum ada data untuk diperiksa. Mulai pendaftaran dari langkah pertama.</p>
+        <a class="btn" href="frame-1-asal-pendaftaran.html">Mulai pendaftaran</a>
+      </section>
+
+      <form class="stack" id="form-confirm" novalidate hidden>
+        <div class="form-alert" id="submit-error" role="alert" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <span id="submit-error-text"></span>
+        </div>
+
+        <section class="summary-card" aria-labelledby="source-title">
+          <div class="summary-head">
+            <h2 class="section-title" id="source-title">Asal pendaftaran</h2>
+            <a class="text-btn" id="edit-source" href="frame-1-asal-pendaftaran.html">Ubah<span class="sr-only"> asal pendaftaran</span></a>
+          </div>
+          <dl class="summary" id="source-summary"></dl>
+        </section>
+
+        <div class="stack" id="candidate-summaries"></div>
+
+        <div class="consent-box">
+          <label class="consent">
+            <input type="checkbox" id="consent" aria-describedby="consent-error">
+            <span id="consent-text"></span>
+          </label>
+          <p class="error-text" id="consent-error">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+            <span>Centang pernyataan ini dulu untuk melanjutkan.</span>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Tampil setelah pendaftaran terkirim -->
+    <div class="content" id="done" hidden>
+      <section class="success" aria-labelledby="done-title">
+        <span class="success-mark" aria-hidden="true">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <div>
+          <span class="kicker"><span lang="ja"><ruby>登録完了<rt>とうろくかんりょう</rt></ruby></span> (Pendaftaran selesai)</span>
+          <h1 class="title" id="done-title" tabindex="-1"></h1>
+        </div>
+        <p id="done-text"></p>
+        <ul class="done-list" id="done-list"></ul>
+        <div class="actions" id="done-actions"></div>
+      </section>
+    </div>
+
+    <div class="footer-actions" id="footer" hidden>
+      <a class="btn secondary" href="frame-2-data-kandidat.html">Kembali</a>
+      <button class="btn" type="submit" form="form-confirm" id="submit-btn"></button>
+    </div>
+  </div>
+
+  <script src="js/frame-3.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Data Kandidat | Suka2Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="back" href="frame-1-asal-pendaftaran.html" aria-label="Kembali ke pilihan jalur">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <!-- TODO: ganti dengan file logo asli Suka2Jepang -->
+      <a class="wordmark" href="https://dev.suka2jepang.com/login">Suka2Jepang</a>
+    </header>
+
+    <div class="content">
+      <ol class="stepper" aria-label="Langkah pendaftaran">
+        <li class="done"><a href="frame-1-asal-pendaftaran.html"><span class="dot">1</span>Jalur</a></li>
+        <li aria-current="step"><span class="dot">2</span>Data</li>
+        <li><span class="dot">3</span>Konfirmasi</li>
+      </ol>
+
+      <div>
+        <span class="kicker"><span lang="ja"><ruby>個人情報<rt>こじんじょうほう</rt></ruby></span> (Data Diri)</span>
+        <h1 class="title" id="page-title">Data kandidat</h1>
+        <p class="subtitle" id="page-subtitle"></p>
+        <p class="required-note">Semua kolom wajib diisi, kecuali yang bertanda opsional.</p>
+      </div>
+
+      <!-- Halaman dibuka tanpa memilih jalur di Frame 1 -->
+      <section class="empty-state" id="no-source" hidden>
+        <p>Jalur pendaftaran belum dipilih. Pilih dulu apakah kamu mendaftar sendiri atau lewat LPK/LKP.</p>
+        <a class="btn" href="frame-1-asal-pendaftaran.html">Pilih jalur pendaftaran</a>
+      </section>
+
+      <form class="stack" id="form-data" action="frame-3-konfirmasi.html" novalidate hidden>
+        <div class="form-alert" id="form-alert" role="alert" hidden>
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <span id="form-alert-text"></span>
+        </div>
+
+        <div class="stack">
+          <fieldset class="group" id="lpk-group" hidden>
+            <legend><h2 class="section-title">Data LPK/LKP</h2></legend>
+            <div class="field" data-field="lpkName">
+              <label for="lpk-name">Nama LPK/LKP</label>
+              <input class="input" id="lpk-name" name="lpkName" autocomplete="organization" aria-describedby="lpk-name-err">
+              <p class="error-text" id="lpk-name-err"></p>
+            </div>
+            <div class="field" data-field="picName">
+              <label for="pic-name">Nama penanggung jawab (PIC)</label>
+              <input class="input" id="pic-name" name="picName" autocomplete="name" aria-describedby="pic-name-err">
+              <p class="error-text" id="pic-name-err"></p>
+            </div>
+            <div class="field" data-field="picPhone">
+              <label for="pic-phone">Nomor WhatsApp PIC</label>
+              <input class="input" id="pic-phone" name="picPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx" aria-describedby="pic-phone-err">
+              <p class="error-text" id="pic-phone-err"></p>
+            </div>
+          </fieldset>
+
+          <div class="stack" id="candidates-section">
+            <h2 class="section-title" id="candidates-title" hidden>Kandidat</h2>
+            <div class="candidate-list" id="candidate-list"></div>
+            <div class="add-row" id="add-row" hidden>
+              <button class="btn secondary" type="button" id="add-candidate">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                Tambah kandidat
+              </button>
+              <p class="hint" id="candidate-count" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer-actions" id="footer" hidden>
+      <button class="btn" type="submit" form="form-data">Lanjut ke konfirmasi</button>
+    </div>
+  </div>
+
+  <script src="js/frame-2.js?v=2"></script>
+</body>
+</html>

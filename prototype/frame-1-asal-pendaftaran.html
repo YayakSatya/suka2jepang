@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Daftar Tes Kaiwa | Suka2Jepang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=15">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="back" href="https://dev.suka2jepang.com/login" data-back aria-label="Kembali">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </a>
+      <!-- TODO: ganti dengan file logo asli Suka2Jepang -->
+      <a class="wordmark" href="https://dev.suka2jepang.com/login">Suka2Jepang</a>
+    </header>
+
+    <form class="content" id="form-asal" action="frame-2-data-kandidat.html" novalidate>
+      <ol class="stepper" aria-label="Langkah pendaftaran">
+        <li aria-current="step"><span class="dot">1</span>Jalur</li>
+        <li><span class="dot">2</span>Data</li>
+        <li><span class="dot">3</span>Konfirmasi</li>
+      </ol>
+
+      <fieldset class="fieldset" id="source-group" aria-describedby="source-help">
+        <legend>
+          <span class="kicker"><span lang="ja"><ruby>会話<rt>かいわ</rt></ruby>テスト</span> (Tes Kaiwa)</span>
+          <h1 class="title">Siapa yang mendaftar?</h1>
+        </legend>
+        <p class="subtitle" id="source-help">Pilih jalur pendaftaran dulu. Data kandidat diisi di langkah berikutnya.</p>
+
+        <div class="choice-list">
+          <label class="choice">
+            <input type="radio" name="source" value="mandiri">
+            <span class="radio" aria-hidden="true"></span>
+            <span>
+              <strong>Mandiri</strong>
+              <span class="desc">Daftar untuk diri sendiri. Satu pendaftaran untuk satu kandidat.</span>
+            </span>
+          </label>
+
+          <label class="choice">
+            <input type="radio" name="source" value="lpk">
+            <span class="radio" aria-hidden="true"></span>
+            <span>
+              <strong>Dari LPK/LKP</strong>
+              <span class="desc">Staf LPK/LKP mendaftarkan satu atau beberapa kandidat sekaligus.</span>
+            </span>
+          </label>
+        </div>
+
+        <p class="error-text" id="source-error" role="alert">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+          <span>Pilih salah satu jalur pendaftaran dulu.</span>
+        </p>
+      </fieldset>
+    </form>
+
+    <div class="footer-actions">
+      <button class="btn" type="submit" form="form-asal">Isi data kandidat</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var form = document.getElementById('form-asal');
+      var group = document.getElementById('source-group');
+      var error = document.getElementById('source-error');
+      var radios = form.querySelectorAll('input[name="source"]');
+      var saved = null;
+      try { saved = sessionStorage.getItem('kaiwa.source'); } catch (e) {}
+
+      function hideError() {
+        error.classList.remove('show');
+        group.removeAttribute('aria-invalid');
+        group.setAttribute('aria-describedby', 'source-help');
+      }
+
+      radios.forEach(function (r) {
+        if (r.value === saved) r.checked = true;
+        r.addEventListener('change', function () {
+          hideError();
+          try { sessionStorage.setItem('kaiwa.source', r.value); } catch (e) {}
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        var picked = form.querySelector('input[name="source"]:checked');
+        if (picked) return;
+        e.preventDefault();
+        error.classList.add('show');
+        group.setAttribute('aria-invalid', 'true');
+        group.setAttribute('aria-describedby', 'source-help source-error');
+        radios[0].focus();
+      });
+
+      // Kembali ke halaman sebelumnya kalau datang dari portal; kalau dibuka langsung (misalnya dari link LPK), ke halaman login.
+      document.querySelector('[data-back]').addEventListener('click', function (e) {
+        var ref = document.referrer;
+        if (ref && new URL(ref).origin === location.origin && history.length > 1) {
+          e.preventDefault();
+          history.back();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
